@@ -1,0 +1,5 @@
+function AutenticacaoDoBalconista(){
+    return(
+        <>AutenticacaoDoBalconista/</>
+    )
+}
