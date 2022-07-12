@@ -5,7 +5,7 @@ import Input from "../../form/Input"
 import Button from "../../form/Button"
 import Table from "../../layout/TabelaRefeicao"
 function Refeicoes(){
-    var array = ["Lanche", "Pequeno Almoco", "Sobremesa"]
+    var array = ["Selecione uma opcao","Lanche", "Pequeno Almoco", "Sobremesa"]
     
     return(
         <div className="container d-flex flex-column my-0">
@@ -41,8 +41,10 @@ function Refeicoes(){
                     />
                     <Button
                         style = "btn-primary my-3"
+                        text="Salvar"
                     />
                 </div>
+                {/*Qui tal componentizar este elemento!*/}
                 <div className="d-flex justify-content-center" style={{width: "70%"}}>
                     <GiMeal className={styles.svg_refeicoes}/>
                 </div>

@@ -20,8 +20,14 @@ function Table(){
                     <td>280MT</td>
                     <td>Foto</td>
                     <td className="p-1 d-flex justify-content-around">
-                        <Button style="btn-secondary my-0"/>
-                        <Button style="btn-danger my-0"/>
+                        <Button
+                            style="btn-secondary my-0"
+                            text="Editar"
+                        />
+                        <Button
+                            style="btn-danger my-0"
+                            text="Eliminar"
+                        />
                     </td>
                 </tr>
                 </tbody>

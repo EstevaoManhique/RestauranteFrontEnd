@@ -1,22 +1,18 @@
 import styles from "./Refeicoes.module.css"
 import {TbReport} from "react-icons/tb"
+import Select from "../../form/Select"
+
 function Bebida(){
+    const array = ["Todas","Refeicao", "Bebida"]
     return(
         <div className="container d-flex flex-column">
             <form className="d-flex my-3">
                 <div style={{width:"30%"}} >
-                    <div className="my-3">
-                        <label className="form-label">Categoria</label>
-                        
-                        <div className="d-flex flex-row">
-                        <select className="form-select" name="f_transporte">
-                            <option>Todas</option>
-                            <option>Refrigerante</option>
-                            <option>Sumo</option>
-                            <option>Agua</option>
-                        </select>
-                        </div>
-                    </div>
+                    <Select
+                        text="Categoria"
+                        name="categoria"
+                        options={array}
+                    />
                     <div className="my-3 p-0">
                         <label for="" className="form-label">Descricao</label>
                         <input type="text" className="form-control" placeholder="Descricao da Bebida (Nome ou Marca)" />
