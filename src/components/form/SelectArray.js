@@ -1,4 +1,4 @@
-function Select(props){
+function SelectArray(props){
     return(
         <div className="my-3 w-100">
             <label className="form-label" htmlFor={props.name}>{props.text}</label>                        
@@ -7,9 +7,8 @@ function Select(props){
                     name={props.name}
                     onChange={props.handleOnChange}
                 >
-                    <option value="Selecione uma opcao">Selecione uma opcao</option>
-                    {props.categorias.map((categoria) =>(
-                        <option value={categoria.descricao} key={categoria.id}>{categoria.descricao}</option>
+                    {props.produtos.map((produto) =>(
+                        <option value={produto} key={produto}>{produto}</option>
                     ))}
                 </select>
             </div>
@@ -17,4 +16,4 @@ function Select(props){
     )
 }
 
-export default Select
+export default SelectArray

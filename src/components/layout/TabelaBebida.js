@@ -1,45 +1,91 @@
 import Button from "../form/Button"
+import {useState} from "react"
+import ReadOnlyBebida from "./ReadOnlyBebida"
+import EditRowBebida from "./EditRowBebida"
 
-function Bebida(){
+function TabelaBebida({refeicoes, handleEditFormSubmit, handleDeleteClick, categorias}){
+
+    const [editRefeicaoDescricao, setEditRefeicaoDescricao] = useState(null)
+    const [editRefeicao, setEditRefeicao] = useState()
+    const [refPesquisa, setRefPesquisa] = useState()
+
+    const handleEditClick = (e, refeicao) => {
+        e.preventDefault()
+        setEditRefeicaoDescricao(refeicao.descricao)
+        console.log(editRefeicao)
+        setEditRefeicao(refeicao)
+
+        setRefPesquisa(refeicao.descricao)
+    }
+    
+    const handleEditFormChange = (e) => {
+        if(e.target.name==="categoria"){    
+            let categoria = categorias.filter((categoria)=> categoria.descricao===e.target.value)
+            setEditRefeicao({... editRefeicao, "categoria":{"id":categoria[0].id,
+            "descricao":categoria[0].descricao, "refeicoes":null, "bebidas": null}})
+            console.log(editRefeicao)
+        }else{
+            setEditRefeicao({...editRefeicao, [e.target.name]:e.target.value})
+        }
+    }
+
+    const handleEditOnSubmit = (e) => {
+        e.preventDefault()
+        handleEditFormSubmit(e, editRefeicao, refPesquisa)
+        setEditRefeicaoDescricao(null)
+        setEditRefeicao(null)
+
+        setRefPesquisa(null)
+    }
+
+    const handleCancelClick = (e) => {
+        e.preventDefault()
+        setEditRefeicaoDescricao(null)
+    }
+
+    const handleOnDelete = (e, refeicao) => {
+        e.preventDefault()
+        handleDeleteClick(refeicao.descricao)
+    }
+
     return(
-        <div className="container border p-0 mt-0">
-                <table className="table table-bordered m-0">
-                    <thead>
+        <form onSubmit={handleEditOnSubmit} className="container border p-0 m-0">
+            <table className="table table-bordered m-0">
+                <thead>
                     <tr>
                         <th>Categoria</th>
                         <th>Descricao</th>
-                        <th>Quantidade</th>
                         <th>Preco</th>
+                        <th>Foto</th>
                         <th>Limite Vermelho</th>
                         <th>Data_Registro</th>
                         <th>Validade</th>
-                        <th style={{width:"11.3rem"}} >Opcoes</th>
+                        <th style={{width:"12rem"}}>Opcoes</th>
                     </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td className="d-flex justify-content-center">Refrigerante</td>
-                        <td>CocaCola</td>
-                        <td>280</td>
-                        <td>200MT</td>
-                        <td>30</td>
-                        <td>20/04/2022</td>
-                        <td>12/03/2024</td>
-                        <td className="p-1 d-flex justify-content-between">
-                            <Button
-                                style="btn-secondary my-0"
-                                text="Editar"
-                            />
-                            <Button
-                                style="btn-danger my-0"
-                                text="Eliminar"
-                            />
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                </thead>
+                <tbody>
+                    {refeicoes.map((refeicao)=>(
+                        <>
+                            {editRefeicaoDescricao === refeicao.descricao ?( 
+                                <EditRowBebida
+                                    editRefeicao={editRefeicao}
+                                    handleEditFormChange={handleEditFormChange}
+                                    handleCancel={handleCancelClick}
+                                    categorias={categorias}
+                                />
+                            ) : (
+                                <ReadOnlyBebida
+                                    refeicao={refeicao}
+                                    handleEditClick={handleEditClick}
+                                    handleOnDelete={handleOnDelete}
+                                />
+                            )}
+                        </>
+                    ))}
+                </tbody>
+            </table>
+        </form>
     )
 }
 
-export default Bebida
+export default TabelaBebida

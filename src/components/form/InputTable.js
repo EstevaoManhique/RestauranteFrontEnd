@@ -1,20 +1,19 @@
-function Input(props){
+function InputTable(props){
     return(
-        <div className="my-2">
-            <label htmlFor={props.name} className={`form-label ${props.style}`}>{props.text}</label>
+        <div>
             <input
                 type={props.type}
                 name={props.name}
                 id={props.name}
                 placeholder={props.placeholder}
-                onChange={props.handleOnChange}
+                onChange={props.handleEditFormChange}
+                onClick={props.handleOnCancel}
                 value={props.value}
                 className=" form-control"
                 style={{height:"2rem"}}
-                accept={props.accept}
             />
         </div>
     )
 }
 
-export default Input
+export default InputTable

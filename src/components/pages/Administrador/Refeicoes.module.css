@@ -7,3 +7,11 @@
     font-size: 30rem;
     color:unset;
 }
+
+.img{
+    margin-top: 2rem;
+    width: 25rem;
+    height: 20rem;
+    object-fit: cover;
+    border-radius: 10px;
+}

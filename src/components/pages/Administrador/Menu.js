@@ -1,6 +1,10 @@
+import NavBar from "../../layout/NavBar"
 function Menu(){
     return(
-        <>Menu</>
+        <>
+            <NavBar/>
+            Menu
+        </>
     )
 }
 

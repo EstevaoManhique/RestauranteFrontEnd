@@ -1,37 +1,72 @@
-import styles  from "./Login.module.css"
 import bg from "./—Pngtree—black hand-painted kitchen menu psd_997935.jpg"
-function Login(){
-    return(
-        <form id="form" class="container p-0 rounded border my-5 card d-flex flex-column border-0" style={{width: "30rem"}}>
-        <div class="w-100">
-          <img class="w-100 rounded" src={bg} alt=""/>
-        </div>
-        <div class="card bg-transparent border card-img-overlay">
-          <div class="d-flex my-5 justify-content-center">
-            <h1 class="text-white">Login</h1>
-          </div>
-          <div class="input">
-            <label class="form-label text-white">Email</label>
-            <input
-              class="form-control"
-              type="email"
-              placeholder="Digite o seu email"/>
-          </div>
+import LoginForm from "./LoginForm"
+import {useState} from "react"
+import {useNavigate} from "react-router-dom"
 
-          <div class="input mb-3">
-            <label class="form-label text-white">Senha</label>
-            <input 
-              class="form-control"
-              type="password"
-              placeholder="Digite a sua senha"
-            />
-            <div class="d-flex flex-row justify-content-end">
-              <span><a href="#" class="m-auto text-white">Esqueceu a senha?</a></span> 
+function Login(){
+
+    const [entradasValidas, setEntradasValidas] = useState(true)
+    const navigate = useNavigate()
+    const [usuarioInValido, setUsuarioInValido] = useState(false)
+
+    function validarEntradas(user){
+        if(user.email && user.senha){
+            getUser(user)
+            setEntradasValidas(true)
+        }else{
+            setEntradasValidas(false)
+        }
+    }
+
+    function getUser(user){
+
+        fetch(`http://localhost:8080/gestor/${user.email}`,{
+            method:"GET",
+            headers:{
+                "Content-type":"application/json"
+            },
+            mode:"cors"
+        })
+        .then((resp) => resp.json())
+        .then((user)=>{
+            if(user){
+                console.log("usuario valido")
+                navigate('/inicio')
+            }
+        }).catch(()=>{
+            console.log("Recurso nao encontrado!")
+            setUsuarioInValido(true)
+        })
+    }
+
+    function handleSubmit(user){
+        validarEntradas(user)
+    }
+
+    return(
+        <div class="container p-0 rounded border my-5 card d-flex flex-column border-0" style={{width: "30rem"}}>
+            <div class="w-100">
+                <img class="w-100 rounded" src={bg} alt=""/>
             </div>
-            <button type="submit" class="btn btn-outline-secondary mt-3 border text-white" style={{width: "100%"}} >Entrar</button>
-          </div>
+            <div class="card bg-transparent border card-img-overlay">
+                <div class="d-flex my-5 justify-content-center">
+                    <h1 class="text-white">Login</h1>
+                </div>
+            <LoginForm handleOnSubmit={handleSubmit} />
+                {!entradasValidas && (
+                    <div className="mt-2 alert text-danger d-flex justify-content-center">
+                        <p>Preencha todos campos!</p>
+                    </div>
+                )
+                }
+                {usuarioInValido && (
+                    <div className="mt-2 alert text-danger d-flex justify-content-center">
+                        <p>Usuario ou senha invalidos!</p>
+                    </div>
+                )
+                }
+            </div>
         </div>
-    </form>
     )
 }
 

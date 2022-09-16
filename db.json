@@ -1,0 +1,51 @@
+{
+  "users": [],
+  "refs": [
+    {
+      "descricao": "Bolo",
+      "categoria": {
+        "id": 2,
+        "descricao": "Lanche",
+        "refeicoes": null,
+        "bebidas": null
+      },
+      "preco": "2000",
+      "foto": null,
+      "id": 1
+    }
+  ],
+  "categorias": [
+    {
+      "descricao": "Pequeno Almoco",
+      "id": 1
+    },
+    {
+      "descricao": "Lanche",
+      "id": 2
+    },
+    {
+      "descricao": "Jantar",
+      "id": 3
+    },
+    {
+      "descricao": "Sobremesa",
+      "id": 4
+    },
+    {
+      "descricao": "Agua",
+      "id": 5
+    },
+    {
+      "descricao": "Cerveja",
+      "id": 6
+    },
+    {
+      "descricao": "Vinho",
+      "id": 7
+    },
+    {
+      "descricao": "Cocktail",
+      "id": 8
+    }
+  ]
+}

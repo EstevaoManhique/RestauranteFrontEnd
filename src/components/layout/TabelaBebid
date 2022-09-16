@@ -1,0 +1,45 @@
+import Button from "../form/Button"
+
+function TabelaBebida(){
+    return(
+        <div className="container border p-0 mt-0">
+                <table className="table table-bordered m-0">
+                    <thead>
+                    <tr>
+                        <th>Categoria</th>
+                        <th>Descricao</th>
+                        <th>Quantidade</th>
+                        <th>Preco</th>
+                        <th>Limite Vermelho</th>
+                        <th>Data_Registro</th>
+                        <th>Validade</th>
+                        <th style={{width:"11.3rem"}} >Opcoes</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td className="d-flex justify-content-center">Refrigerante</td>
+                        <td>CocaCola</td>
+                        <td>280</td>
+                        <td>200MT</td>
+                        <td>30</td>
+                        <td>20/04/2022</td>
+                        <td>12/03/2024</td>
+                        <td className="p-1 d-flex justify-content-between">
+                            <Button
+                                style="btn-secondary my-0"
+                                text="Editar"
+                            />
+                            <Button
+                                style="btn-danger my-0"
+                                text="Eliminar"
+                            />
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+    )
+}
+
+export default TabelaBebida

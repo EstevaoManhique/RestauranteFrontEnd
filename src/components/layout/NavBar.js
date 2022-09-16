@@ -19,7 +19,7 @@ function NavBar(){
             <NavItem>
                 <NavLink style={{fontSize:"20px"}}
                     href="#">
-                   <Link to="/">
+                   <Link to="/inicio">
                         <BsHouseFill className="text-4" /> Inicio
                     </Link>
                 </NavLink>
@@ -33,7 +33,7 @@ function NavBar(){
             </NavItem>
             <NavItem>
                  <NavLink style={{fontSize:"20px"}} href="#">
-                    <Link to="refeicoes">
+                    <Link to="/refeicoes">
                         <GiMeal/> Refeicoes
                     </Link>
                </NavLink>
